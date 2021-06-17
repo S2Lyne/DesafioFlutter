@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 
 import 'package:flutter/material.dart';
 import 'package:my_first_app_flutter/models/contratado.dart';
+import 'package:my_first_app_flutter/routes/app_routes.dart';
 
 class ContratadoTitle extends StatelessWidget {
   final Contratado contratado;
@@ -29,7 +30,12 @@ class ContratadoTitle extends StatelessWidget {
             IconButton(
               icon: Icon(Icons.add_task),
               color: Colors.amber,
-              onPressed: () {},
+              onPressed: () {
+                Navigator.of(context).pushNamed(
+                  AppRoutes.AGENDAMENTO,
+                  arguments: contratado,
+                );
+              },
             ),
           ],
         ),

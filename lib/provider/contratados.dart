@@ -15,6 +15,8 @@ class Contratados with ChangeNotifier {
     return _items.length;
   }
 
+  get id => null;
+
   Contratado byIndex(int i) {
     return _items.values.elementAt(i);
   }
@@ -27,24 +29,38 @@ class Contratados with ChangeNotifier {
     if (contratado.id != null &&
         contratado.id.trim().isNotEmpty &&
         _items.containsKey(contratado.id)) {
-      _items.update(contratado.id, (_) => contratado);
-    }
-
-    //adicionar
-    final id = Random().nextDouble().toString();
-    _items.putIfAbsent(
-        id,
-        () => Contratado(
-              id: id,
+      _items.update(
+          contratado.id,
+          (_) => Contratado(
+              id: contratado.id,
               nome: contratado.nome,
               email: contratado.email,
               senha: contratado.senha,
-              servico: contratado.servico,
               telefone: contratado.telefone,
-              avatarUrl: contratado.avatarUrl,
-            ));
-    // ou alterar
-
+              servico: contratado.servico,
+              avatarUrl: contratado.avatarUrl));
+    } else {
+      //adicionar
+      final id = Random().nextDouble().toString();
+      _items.putIfAbsent(
+          id,
+          () => Contratado(
+                id: id,
+                nome: contratado.nome,
+                email: contratado.email,
+                senha: contratado.senha,
+                servico: contratado.servico,
+                telefone: contratado.telefone,
+                avatarUrl: contratado.avatarUrl,
+              ));
+    }
     notifyListeners();
+  }
+
+  void remove(Contratados contratado) {
+    if (contratado != null && contratado.id != null) {
+      _items.remove(contratado.id);
+      notifyListeners();
+    }
   }
 }

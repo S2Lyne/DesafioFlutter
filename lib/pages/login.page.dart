@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:my_first_app_flutter/components/contratado_title.dart';
 import 'package:my_first_app_flutter/provider/contratados.dart';
+import 'package:my_first_app_flutter/routes/app_routes.dart';
 import 'package:provider/provider.dart';
 
 class LoginPage extends StatefulWidget {
@@ -103,6 +105,13 @@ class _ContratarState extends State<Contratar> {
           IconButton(
             icon: Icon(Icons.filter_alt_rounded),
             color: Colors.white,
+            onPressed: () {
+              Navigator.of(context).pushNamed(AppRoutes.AGENDAMENTO);
+            },
+          ),
+          IconButton(
+            icon: Icon(Icons.search_rounded),
+            color: Colors.white,
             onPressed: () {},
           ),
         ],
@@ -111,6 +120,25 @@ class _ContratarState extends State<Contratar> {
         itemCount: contratados.count,
         itemBuilder: (ctx, i) => ContratadoTitle(contratados.all.elementAt(i)),
       ),
+    );
+  }
+}
+
+class Agendamento extends StatefulWidget {
+  const Agendamento({Key? key}) : super(key: key);
+
+  @override
+  _AgendamentoState createState() => _AgendamentoState();
+}
+
+class _AgendamentoState extends State<Agendamento> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("Agendamento"),
+      ),
+      //body: ListView.separated(),
     );
   }
 }

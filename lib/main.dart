@@ -1,6 +1,7 @@
 import 'package:my_first_app_flutter/pages/login.page.dart';
 import 'package:flutter/material.dart';
 import 'package:my_first_app_flutter/provider/contratados.dart';
+import 'package:my_first_app_flutter/routes/app_routes.dart';
 import 'package:provider/provider.dart';
 
 void main() {
@@ -26,6 +27,10 @@ class MyApp extends StatelessWidget {
             primarySwatch: Colors.deepOrange,
             visualDensity: VisualDensity.adaptivePlatformDensity),
         home: LoginPage(),
+        routes: {
+          AppRoutes.HOME: (_) => LoginPage(),
+          AppRoutes.AGENDAMENTO: (_) => Agendamento()
+        },
       ),
     );
   }
